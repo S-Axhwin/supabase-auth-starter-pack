@@ -1,50 +1,95 @@
-# Welcome to your Expo app 👋
+# Expo Starter Pack for Devs
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Welcome to the Expo Starter Pack! This starter pack is built to simplify app development by providing a well-structured stack that integrates React Native, Supabase, and NativeWind. Whether you're transitioning from web development or looking for a streamlined setup, this pack is designed to save you time and effort.
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Built With
 
-   ```bash
+1. **Expo React Native** – For cross-platform app development.
+2. **Supabase** – Simplified backend and authentication.
+3. **NativeWind** – Utility-first styling with Tailwind CSS for React Native.
+
+---
+
+## 🛠 Why Was This Built?
+
+As a web developer working with tools like ReactJS, Next.js, Supabase, and Hono.js for full-stack web applications, transitioning to app development posed several challenges. 
+
+When tasked with creating a mobile app, I was determined to stick with React Native due to my familiarity with ReactJS workflows. This eliminated the need to explore options like Flutter or Android Studio, ensuring I could focus on solving real app development problems.
+
+---
+
+## 🧐 Problems with Existing Templates
+
+1. Lack of a comprehensive bundle for app development.
+2. Poorly written documentation for runtime scenarios.
+3. Switching stacks often requires substantial effort and a steep learning curve.
+
+---
+
+## 💡 How Does This Starter Pack Solve These Problems?
+
+1. A well-defined stack that eliminates confusion and ensures compatibility.
+2. Clear documentation for every step, making the development process seamless.
+3. Fine-tuned configurations to avoid conflicts and enhance developer experience.
+
+---
+
+## 📂 Project File Structure
+
+```plaintext
+├── README.md
+├── app
+│   ├── (auth)  # Screens for authenticated users
+│   │   ├── _layout.tsx
+│   │   ├── account.tsx
+│   │   ├── home.tsx
+│   │   ├── profile
+│   │   │   └── [id].tsx
+│   │   └── welcome.tsx
+│   ├── (public) # Screens for unauthenticated users
+│   │   └── sign-in.tsx
+│   └── _layout.tsx
+├── app.json
+├── bun.lockb
+├── components
+│   └── Auth.tsx
+├── lib
+│   ├── auth.tsx
+│   └── supabase.ts
+├── package.json
+└── tsconfig.json
+```
+
+# 📖 Getting Started
+
+Follow these steps to set up and run the project:
+
+## Prerequisites
+- Node.js installed on your system.
+- Expo CLI installed globally:  
+  ```
+  npm install -g expo-cli
+  ```
+
+## Installation
+1. Clone the repository:
+   ```
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```
+   cd expo-starter-pack
+   ```
+3. Install dependencies:
+   ```
    npm install
    ```
 
-2. Start the app
-
-   ```bash
-    npx expo start
+## Running the App
+1. Start the Expo development server:
    ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+   npm start
+   ```
+2. Scan the QR code with your Expo Go app to preview the app on your device.
