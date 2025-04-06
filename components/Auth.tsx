@@ -45,17 +45,6 @@ const performOAuth = async () => {
   }
 };
 
-const sendMagicLink = async () => {
-  const { error } = await supabase.auth.signInWithOtp({
-    email: "valid.email@supabase.io",
-    options: {
-      emailRedirectTo: redirectTo,
-    },
-  });
-
-  if (error) throw error;
-  // Email sent.
-};
 
 export default function Auth() {
   // Handle linking into app from email app.
