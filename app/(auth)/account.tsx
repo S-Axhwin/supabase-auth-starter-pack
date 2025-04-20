@@ -3,33 +3,50 @@ import { useRouter } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import { useAuth } from '@/lib/auth';
+import { useStore } from '@/lib/store';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { fetchUser } from '@/lib/helper/fetchUser';
+import { useQuery } from '@tanstack/react-query';
 
 const { width: SCREEN_WIDTH } = Dimensions.get('window');
 const AVATAR_SIZE = SCREEN_WIDTH * 0.4;
 
 export default function Account() {
+   const { data, error, isLoading } = useQuery({
+    queryKey: ['user'],
+    queryFn: fetchUser,
+    staleTime: 5 * 60 * 1000,   // 5 min cache freshness
+    cacheTime: 10 * 60 * 1000,  // Keep it in cache 10 min
+  });
+  console.log("account: ",data);
+  
   const router = useRouter();
   const { session } = useAuth();
-  const [profile, setProfile] = useState<any>(null);
+  const { profile, setProfile } = useStore();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (!session?.user?.id) {
+      fetchUser().then((user) => {
+        console.log("from helop to app",user);
+        
+      });
       setLoading(false);
       return;
     }
 
     async function loadProfile() {
       const { data, error } = await supabase
-        .from('profiles')
+        .from('users')
         .select('*')
-        .eq('id', session.user.id)
+        .eq('id', session?.user.id)
         .single();
 
       if (data) {
         setProfile(data);
+      } else if (error) {
+        console.error('Error loading profile:', error);
       }
       setLoading(false);
     }

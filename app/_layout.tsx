@@ -1,3 +1,4 @@
+import "../global.css"
 import { Slot, useRouter, useSegments } from 'expo-router';
 import { useEffect, useState } from 'react';
 import { AuthProvider, useAuth } from '../lib/auth';
@@ -19,7 +20,7 @@ function ProtectedLayout() {
       }
 
       const { data, error } = await supabase
-        .from('profiles')
+        .from('users')
         .select('*')
         .eq('id', session.user.id)
         .single();

@@ -2,7 +2,7 @@
   "expo": {
     "name": "std-app",
     "scheme": "com.supabase",
-    "slug": "std-app",
+    "slug": "gatex",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -15,7 +15,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.ashwinsathiya.gatex"
     },
     "web": {
       "bundler": "metro",
@@ -32,10 +33,20 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff"
         }
-      ]
+      ],
+      "expo-font"
     ],
     "experiments": {
       "typedRoutes": true
-    }
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "a8dbe8eb-a231-4d55-876a-384994b136a2"
+      }
+    },
+    "owner": "ashwinsathiya"
   }
 }

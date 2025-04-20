@@ -1,41 +1,101 @@
+import * as Linking from 'expo-linking'
 import { Tabs } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
-import { SafeAreaView } from 'react-native';
+import { MaterialIcons } from '@expo/vector-icons';
+import { useState } from 'react';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+
+const queryClient = new QueryClient();
+
 
 export default function AuthLayout() {
+  const [isDarkMode, setIsDarkMode] = useState(false);
   return (
+    <QueryClientProvider client={queryClient}>
     <Tabs
-      screenOptions={{
+      screenOptions={({ route }) => ({
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: '#fff', 
-          borderTopWidth: 0,
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
           elevation: 0,
-          shadowOpacity: 0,
+          backgroundColor: isDarkMode ? '#2a2a2a' : '#fff',
+          borderTopWidth: 0,
           height: 60,
-          paddingBottom: 10,
+          paddingBottom: 8,
+          paddingTop: 2,
+          display: ['profile/[id]', 'roomDetail', 'welcome', 'search', "RoomDetail", "PersonalInformation", "payment"].includes(route.name) ? 'none' : 'flex'
         },
-        tabBarActiveTintColor: '#3DABFF',
-        tabBarInactiveTintColor: '#888',
-      }}
+        tabBarActiveTintColor: '#96B374',
+        tabBarInactiveTintColor: isDarkMode ? '#666' : '#888',
+      })}
     >
-
       <Tabs.Screen
-        name="home"
+        name="index"
         options={{
-          tabBarLabel: 'Home',
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="home" size={28} color={color} />
           ),
         }}
       />
       <Tabs.Screen
+        name="home"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="home" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="payment"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="wishlist"
+        options={{
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="favorite-outline" size={28} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="bookings"
+        options={{
+          
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="calendar-today" size={28} color={color} />
+          ),
+        }}
+      />
+      
+      <Tabs.Screen
         name="account"
         options={{
-          tabBarLabel: 'Profile', 
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person-outline" size={size} color={color} />
+          tabBarIcon: ({ color }) => (
+            <MaterialIcons name="person-outline" size={28} color={color} />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile/[id]"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="RoomDetail"
+        options={{
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="roomDetail"
+        options={{
+          href: null,
         }}
       />
       <Tabs.Screen
@@ -45,13 +105,12 @@ export default function AuthLayout() {
         }}
       />
       <Tabs.Screen
-        name="profile/[id]"
+        name="search"
         options={{
           href: null,
         }}
       />
-
     </Tabs>
-
+    </QueryClientProvider>
   );
 }
